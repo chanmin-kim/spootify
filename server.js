@@ -33,7 +33,12 @@ app.get('/write', (req, res) => {
 })
 
 // 상세페이지 : 글 목록에서 제목을 누르면 해당 글의 상세페이지로 이동
-
+app.get('/detail/:id', (req, res)=>{
+    review = Reviews.findOne({_id: req.params.id}, (error, result)=>{
+        if (error) return console.log(error);
+        res.render('detail', {review : result});
+    })
+})
 
 // 수정페이지 : 상세페이지에서 수정 버튼을 누르면 글을 수정할 수 있는 페이지로 이동
 

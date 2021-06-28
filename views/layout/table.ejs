@@ -16,7 +16,11 @@
                 <tbody>
                     <% for (var i=0; i < reviews.length; i++) { %>
                     <tr>
-                        <td><%= reviews[i].title %></td>
+                        <td>
+                            <a href="/detail/<%= reviews[i]._id %>" method="GET">
+                            <%= reviews[i].title %>
+                            </a>
+                        </td>
                         <td><%= reviews[i].username %></td>
                         <td><%= reviews[i].created %></td>
                     </tr>
