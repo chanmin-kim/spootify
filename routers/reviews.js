@@ -4,8 +4,8 @@ var router = express.Router();
 
 // 작성한 글을 저장하는 기능
 router.post('/write', async(req, res)=>{
-  const { username, password, title, content } = req.body;
-  new_review = await Reviews.create({ username, password, title, content });
+  const { username, password, title, content, musicUrl } = req.body;
+  new_review = await Reviews.create({ username, password, title, content, musicUrl });
 
   if (new_review){
     res.send({message: "저장완료"})

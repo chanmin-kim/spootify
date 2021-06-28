@@ -17,7 +17,10 @@ const goodsSchema = new Schema({
   },
   content: {
     type: String
-  }
+  },
+  musicUrl: {
+    type: String
+  },
 });
 
 module.exports = mongoose.model("Reviews", goodsSchema);

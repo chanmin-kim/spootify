@@ -35,9 +35,20 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1">내용</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
-                                      </div>
-                                    <button type="submit" class="btn btn-danger" onclick="submitReview()">Submit</button>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                            name="content"></textarea>
+                                    </div>
+                                    <label for="basic-url">리뷰할 노래 Url</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"
+                                                id="basic-addon3">https://www.youtube.com/embed/</span>
+                                        </div>
+                                        <input type="text" class="form-control" id="basic-url"
+                                            aria-describedby="basic-addon3">
+                                    </div>
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="submitReview()">Submit</button>
                                 </form>
                             </div>
                     </div>
@@ -54,15 +65,16 @@
         <!-- End of Page Wrapper -->
 
         <script>
-            function submitReview(){
+            function submitReview() {
                 // 입력된 정보 받아오기
                 let title = $("#title").val();
                 let username = $("#username").val();
                 let password = $("#password").val();
                 let content = $("#exampleFormControlTextarea1").val();
+                let musicUrl = $("#basic-url").val();
 
                 // 리뷰작성을 위한 정보들을 다 입력했는지 확인
-                if (!title || !username || !password || !content){
+                if (!title || !username || !password || !content || !musicUrl) {
                     alert("모든 정보를 입력해주세요!");
                     return false;
                 }
@@ -75,9 +87,10 @@
                         username: username,
                         password: password,
                         title: title,
-                        content: content
+                        content: content,
+                        musicUrl: musicUrl
                     },
-                    success: function(response){
+                    success: function (response) {
                         alert(response['message']);
                         location.href = '/write';
                     }
