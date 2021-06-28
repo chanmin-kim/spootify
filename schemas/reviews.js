@@ -2,10 +2,8 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 const goodsSchema = new Schema({
-  name: {
+  username: {
     type: String,
-    required: true,
-    unique: true
   },
   created: {
     type:Date,
@@ -17,7 +15,7 @@ const goodsSchema = new Schema({
   title: {
     type: String
   },
-  Content: {
+  content: {
     type: String
   }
 });

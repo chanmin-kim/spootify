@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('layout/header.html') %>
+
+    <body id="page-top">
+
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+
+            <%- include ('layout/sidebar.html') %>
+
+                <!-- Content Wrapper -->
+                <div id="content-wrapper" class="d-flex flex-column">
+
+                    <!-- Main Content -->
+                    <div id="content">
+                        <%- include ('layout/topbar.html') %>
+                            <!-- 글쓰기입력폼 -->
+                            <h4 class="container mt-4"><strong>곡 리뷰를 작성해주세요</strong></h4>
+
+                            <div class="container mt-3">
+                                <form>
+                                    <div class="form-group">
+                                        <label>제목</label>
+                                        <input type="text" class="form-control" id="title" name="title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>작성자</label>
+                                        <input type="text" class="form-control" id="username" name="username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>비밀번호</label>
+                                        <input type="password" class="form-control" id="password" name="password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">내용</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
+                                      </div>
+                                    <button type="submit" class="btn btn-danger" onclick="submitReview()">Submit</button>
+                                </form>
+                            </div>
+                    </div>
+                    <!-- End of Main Content -->
+
+                    <!-- Footer -->
+                    <%- include ('layout/footer.html') %>
+                        <!-- End of Footer -->
+
+                </div>
+                <!-- End of Content Wrapper -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <script>
+            function submitReview(){
+                // 입력된 정보 받아오기
+                let title = $("#title").val();
+                let username = $("#username").val();
+                let password = $("#password").val();
+                let content = $("#exampleFormControlTextarea1").val();
+
+                // 리뷰작성을 위한 정보들을 다 입력했는지 확인
+                if (!title || !username || !password || !content){
+                    alert("모든 정보를 입력해주세요!");
+                    return false;
+                }
+
+                // 정보가 다 있다면 api에 POST요청 보내기
+                $.ajax({
+                    type: "POST",
+                    url: "/api/write",
+                    data: {
+                        username: username,
+                        password: password,
+                        title: title,
+                        content: content
+                    },
+                    success: function(response){
+                        alert(response['message']);
+                        location.href = '/write';
+                    }
+                })
+            }
+        </script>
+
+        <%- include ('layout/vendor.html') %>
+
+    </body>
+
+</html>

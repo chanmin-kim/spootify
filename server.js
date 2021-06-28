@@ -9,15 +9,27 @@ app.set('view engine', 'ejs');
 const reviewsRouter = require("./routers/reviews");
 const mongoose = require('mongoose');
 const connect = require("./schemas");
+const Reviews = require("./schemas/Reviews");
 connect();
 
 app.listen(port, () => {
     console.log(`listening at http://localhost:${port}`)
   })
 
-// 메인페이지 : 작성한 글 목록을 보여줌
-app.get('/', (req, res) => {
-    res.render('index');
+// 메인페이지 : 홈화면, 작성한 글 목록을 최신순으로 보여줌
+app.get('/', async (req, res) => {
+    reviews =  await Reviews.find().sort({created: -1})
+    if (reviews){
+        res.render('index', {reviews : reviews});
+    }else{
+        console.log("DB에서 데이터를 불러올 수 없습니다")
+    }
+    
+})
+
+// 작성페이지 : 리뷰 작성 버튼을 누르면 글을 작성할 수 있는 페이지로 이동
+app.get('/write', (req, res) => {
+    res.render('write');
 })
 
 // 상세페이지 : 글 목록에서 제목을 누르면 해당 글의 상세페이지로 이동
