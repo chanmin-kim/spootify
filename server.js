@@ -36,7 +36,7 @@ app.get('/write', (req, res) => {
 app.get('/detail/:id', (req, res)=>{
     review = Reviews.findOne({_id: req.params.id}, (error, result)=>{
         if (error) return console.log(error);
-        res.render('detail2.ejs', {review : result});
+        res.render('detail.ejs', {review : result});
     })
 })
 
