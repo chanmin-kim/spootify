@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('layout/header.html') %>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <%- include ('layout/sidebar.html')  %>
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                <%- include ('layout/topbar.html')  %>
+                <%- include ('layout/table.html')  %>
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <%- include ('layout/footer.html')  %>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <%- include ('layout/vendor.html')  %>
+
+</body>
+
+</html>
