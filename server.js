@@ -41,6 +41,14 @@ app.get('/detail/:id', (req, res)=>{
 })
 
 // 수정페이지 : 상세페이지에서 수정 버튼을 누르면 글을 수정할 수 있는 페이지로 이동
+app.get('/update/:id', (req,res)=>{
+    review = Reviews.findOne({_id: req.params.id}, (error, result)=>{
+        if (error) return console.log(error);
+        res.render('update.ejs', {review : result});
+    })
+})
+
+// 검색결과페이지 : 상단 검색바에서 작성자명으로 검색하면, 그에 해당하는 글들을 보여줌
 
 
 // api : 글 작성, 수정, 삭제에 대한 정보처리를 담당하는 부분

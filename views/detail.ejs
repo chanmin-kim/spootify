@@ -38,17 +38,25 @@
 
                                     <div class="col-md-4">
                                         <h3 class="my-3">리뷰내용</h3>
+                                        <h4 class="my-3"><%= review.created %></h4>
                                         <p>
                                             <%= review.content %>
                                         </p>
 
-                                        <h3 class="my-3">Project Details</h3>
+                                        <button type="button" class="btn btn-danger" onclick="location.href='/update/<%= review._id %>'" method="GET">수정</button>
+                                        <button type="button" class="btn btn-warning">삭제</button>
+                                        <!-- <div class="card" style="width: 100%;">
+                                            <div class="card-body">
+                                                <a href="" method="" class="card-link">수정하기</a>
+                                            </div>
+                                        </div> -->
+                                        <!-- <h3 class="my-3">Project Details</h3>
                                         <ul>
                                             <li>Lorem Ipsum</li>
                                             <li>Dolor Sit Amet</li>
                                             <li>Consectetur</li>
                                             <li>Adipiscing Elit</li>
-                                        </ul>
+                                        </ul> -->
                                     </div>
 
                                 </div>

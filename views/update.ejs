@@ -17,26 +17,26 @@
                     <div id="content">
                         <%- include ('layout/topbar.html') %>
                             <!-- 글쓰기입력폼 -->
-                            <h4 class="container mt-4"><strong>곡 리뷰를 작성해주세요</strong></h4>
+                            <h4 class="container mt-4"><strong>수정할 내용을 입력해주세요</strong></h4>
 
                             <div class="container mt-3">
                                 <form>
                                     <div class="form-group">
                                         <label>곡제목</label>
-                                        <input type="text" class="form-control" id="title" name="title">
+                                        <input type="text" class="form-control" id="title" name="title" value="<%= review.title %>">
                                     </div>
                                     <div class="form-group">
                                         <label>작성자</label>
-                                        <input type="text" class="form-control" id="username" name="username">
+                                        <input type="text" class="form-control" id="username" name="username" value="<%= review.username %>">
                                     </div>
                                     <div class="form-group">
-                                        <label>비밀번호</label>
-                                        <input type="password" class="form-control" id="password" name="password">
+                                        <label>작성한 비밀번호를 다시 입력해주세요</label>
+                                        <input type="password" class="form-control" id="confirm_password" name="confirm_password">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1">내용</label>
                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                            name="content"></textarea>
+                                            name="content"><%= review.content %></textarea>
                                     </div>
                                     <label for="basic-url">리뷰할 노래 Url</label>
                                     <div class="input-group mb-3">
@@ -45,10 +45,10 @@
                                                 id="basic-addon3">https://www.youtube.com/embed/</span>
                                         </div>
                                         <input type="text" class="form-control" id="basic-url"
-                                            aria-describedby="basic-addon3">
+                                            aria-describedby="basic-addon3" value="<%= review.musicUrl %>">
                                     </div>
                                     <button type="submit" class="btn btn-danger"
-                                        onclick="submitReview()">Submit</button>
+                                        onclick="submitUpdate()">수정완료</button>
                                 </form>
                             </div>
                     </div>
@@ -65,16 +65,16 @@
         <!-- End of Page Wrapper -->
 
         <script>
-            function submitReview() {
+            function submitUpdate() {
                 // 입력된 정보 받아오기
                 let title = $("#title").val();
                 let username = $("#username").val();
-                let password = $("#password").val();
+                let confirm_password = $("#confirm_password").val();
                 let content = $("#exampleFormControlTextarea1").val();
                 let musicUrl = $("#basic-url").val();
 
-                // 리뷰작성을 위한 정보들을 다 입력했는지 확인
-                if (!title || !username || !password || !content || !musicUrl) {
+                // 리뷰수정을 위한 정보들을 다 입력했는지 확인
+                if (!title || !username || !confirm_password || !content || !musicUrl) {
                     alert("모든 정보를 입력해주세요!");
                     return false;
                 }
@@ -82,17 +82,21 @@
                 // 정보가 다 있다면 api에 POST요청 보내기
                 $.ajax({
                     type: "POST",
-                    url: "/api/write",
+                    url: "/api/update/<%= review._id %>",
                     data: {
                         username: username,
-                        password: password,
+                        confirm_password: confirm_password,
                         title: title,
                         content: content,
                         musicUrl: musicUrl
                     },
                     success: function (response) {
                         alert(response['message']);
-                        location.href = '/';
+                        location.href = '/detail/<%= review._id %>';
+                    },
+                    error: function(error){
+                        alert("비밀번호가 틀렸습니다");
+                        location.relode();
                     }
                 })
             }
