@@ -28,13 +28,24 @@ router.post('/update/:id', async(req, res)=>{
     })
   }else {
     res.status(400).send({message:"비밀번호가 틀렸습니다"})
-  }
-  
-
-
-  
+  } 
 }) 
 
 // 특정 글을 삭제하는 기능
-  
+router.delete('/delete/:id', async(req, res)=>{
+  original_review = await Reviews.findOne({_id:req.params.id})
+
+  if (original_review.password == req.body.confirm_password){
+    await Reviews.deleteOne({_id:req.params.id},function(error,result){
+      if (error){
+        console.log(error);
+      }else{
+        res.status(200).send({message: "삭제완료"})
+      }
+    })
+  }else {
+    res.status(400).send({message:"비밀번호가 틀렸습니다"})
+  } 
+}) 
+
 module.exports = router;

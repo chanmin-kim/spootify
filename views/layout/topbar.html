@@ -1,15 +1,9 @@
 <!-- Topbar -->
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="작성자명으로 검색"
-                aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-            </div>
-        </div>
+    <form name=fsearch method=get style="margin:0px;" action="http://www.google.co.kr/search" target="_blank">
+        <input type=hidden name=where value="nexteach">
+        <input name=query itemname="검색어" required value="" size="33" placeholder="구글검색창">
+        <input type=image src="https://i.pinimg.com/736x/0a/39/66/0a39669d5783df4a52d68a5fa1db8c20.jpg" width='60' height='20' border=0 align=absmiddle>
     </form>
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
