@@ -23,7 +23,7 @@ router.post('/update/:id', async(req, res)=>{
       if (error){
         console.log(error);
       }else{
-        res.status(200).send({message: "저장완료"})
+        res.status(200).send({message: "수정완료"})
       }
     })
   }else {
