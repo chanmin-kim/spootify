@@ -9,7 +9,7 @@ app.set('view engine', 'ejs');
 const reviewsRouter = require("./routers/reviews");
 const mongoose = require('mongoose');
 const connect = require("./schemas");
-const Reviews = require("./schemas/Reviews");
+const Reviews = require("./schemas/reviews");
 connect();
 
 app.listen(port, () => {

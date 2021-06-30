@@ -1,5 +1,5 @@
 var express = require('express');
-const Reviews = require("../schemas/Reviews");
+const Reviews = require("../schemas/reviews");
 var router = express.Router();
 
 // 작성한 글을 저장하는 기능
